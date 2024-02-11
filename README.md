@@ -2,7 +2,7 @@ This is a study project at ALX_SE.
 The goal is to create a basic clone of the AirBnB website and learn basic concepts of web development in the process.
 
 The project has various milestones among them the "command interpreter". This is an interactive commandline control for the web app.
-No graphical user interface. More like a shell. Through the command interpreter you can create, update and delete objects or smply data
+No graphical user interface. More like a shell. Through the command interpreter you can create, update and delete objects, or simply data,
 in the fake AirBnB.
 
 Example:

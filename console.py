@@ -110,6 +110,92 @@ If the instance of the class name doesn’t exist for the id, print ** no instan
 
             print("** class doesn't exist **")
 
+    def do_all(self, line):
+        """
+        Prints all string representation of all instances based or not on the class name. Ex: $ all BaseModel or $ all.
+        The printed result must be a list of strings (like the example below)
+        If the class name doesn’t exist, print ** class doesn't exist ** (ex: $ all MyModel)
+        """
+        instance_list = []
+        modules = ["models.base_model", "models.engine.file_storage"]
+
+        if line:
+            cls_name = line.split()[0]
+
+            for item in modules:
+                module = importlib.import_module(item)
+                if hasattr(module, cls_name):
+                    storage = module.storage
+                    all_objs_dict = storage.all()
+
+                    for key, value in all_objs_dict.items():
+                        if key.startswith(cls_name + "."):
+                            instance_list.append(value.__str__())
+                    print(instance_list)
+                    return
+            print("** class doesn't exist **")
+
+        else:
+            for item in modules:
+                module = importlib.import_module(item)
+                storage = module.storage
+                all_objs_dict = storage.all()
+
+                for key, value in all_objs_dict.items():
+                    instance_list.append(value.__str__())
+                print(instance_list)
+                return
+
+    def do_update(self, line):
+        """
+        Updates an instance based on the class name and id by adding or
+        updating attribute (save the change into the JSON file).
+        Ex: $ update BaseModel 1234-1234-1234 email "aibnb@mail.com"
+        """
+        args = line.split()
+        args_len = len(args)
+
+        if (args_len == 3):
+            print("** value missing **")
+            return
+        if (args_len == 2):
+            print("** attribute name missing **")
+            return
+        if (args_len == 1):
+            print("** instance id missing **")
+            return
+        if (args_len == 0):
+            print("** class name missing **")
+            return
+
+        cls_name = args[0]
+        insta_id = args[1]
+        attr_name = args[2]
+        attr_val = args[3]
+        modules = ["models.base_model", "models.engine.file_storage"]
+        
+        for item in modules:
+            module = importlib.import_module(item)
+
+            if hasattr(module, cls_name):
+                storage = module.storage
+                all_objs_dict = storage.all()
+
+                key = f"{cls_name}.{insta_id}"
+                if key in all_objs_dict:
+                    target_obj = all_objs_dict[key]
+                    if hasattr(target_obj, attr_name):
+                        its_type = type(getattr(target_obj, attr_name))
+                        setattr(target_obj, attr_name, its_type(attr_val.strip('"')))
+                        storage.save()
+                    else:
+                        setattr(target_obj, attr_name, attr_val.strip('"'))
+                    return
+                else:
+                    print("** no instance found **")
+                    return
+        print("** class doesn't exist **")
+
 
     def emptyline(self):
         """

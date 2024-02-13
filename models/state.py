@@ -3,7 +3,7 @@
 A lot about state happen here
 """
 
-from model.base_model import BaseModel
+from models.base_model import BaseModel
 
 
 class State(BaseModel):

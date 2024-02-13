@@ -6,7 +6,7 @@ Contains the entry point of the command interpreter
 import cmd
 import importlib
 
-model_list = ["models.base_model", "model.user", "models.engine.file_storage"]
+model_list = ["models.base_model", "models.user", "models.engine.file_storage"]
 
 class HBNBCommand(cmd.Cmd):
     """

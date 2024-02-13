@@ -11,7 +11,7 @@ class User(BaseModel):
     """
     This is the type of all users
     """
-    self.email = ""
-    self.password = ""
-    self.first_name = ""
+    email = ""
+    password = ""
+    first_name = ""
     last_name = ""

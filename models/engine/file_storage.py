@@ -58,4 +58,4 @@ class FileStorage:
             if f"{key}".startswith("BaseModel."):
                 self.__objects[key] = BaseModel(**value)
             if f"{key}".startswith("User."):
-                self.__objects[key] = User(**valuei)
+                self.__objects[key] = User(**value)

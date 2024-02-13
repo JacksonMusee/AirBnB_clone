@@ -90,7 +90,7 @@ If the instance of the class name doesn’t exist for the id, print ** no instan
                 print("** instance id missing **")
                 return
             cls_name = args[0]
-            obj_id = args[1]
+            obj_id = args[1].strip('"')
             modules = model_list
 
             for item in modules:

@@ -11,7 +11,8 @@ class User(BaseModel):
     """
     This is the type of all users
     """
-    email = ""
-    password = ""
-    first_name = ""
-    last_name = ""
+    def __init__(self):
+        email = ""
+        password = ""
+        first_name = ""
+        last_name = ""

@@ -48,7 +48,7 @@ class FileStorage:
         (__file_path) exists ; otherwise, do nothing.
         """
         from models.base_model import BaseModel
-        from model.user import User
+        from models.user import User
 
         if os.path.exists(self.__file_path):
             with open(self.__file_path, 'r') as j_file:
@@ -58,4 +58,4 @@ class FileStorage:
             if f"{key}".startswith("BaseModel."):
                 self.__objects[key] = BaseModel(**value)
             if f"{key}".startswith("User."):
-                self.__objects[key] = User(**value)
+                self.__objects[key] = User(**valuei)

@@ -6,6 +6,7 @@ Contains the entry point of the command interpreter
 import cmd
 import importlib
 
+model_list = ["models.base_model", "model.user", "models.engine.file_storage"]
 
 class HBNBCommand(cmd.Cmd):
     """
@@ -25,7 +26,7 @@ class HBNBCommand(cmd.Cmd):
 
         else:
             cls_name = line.split()[0]
-            modules = ["models.base_model"]
+            modules = model_list
 
             for item in modules:
                 module = importlib.import_module(item)
@@ -54,7 +55,7 @@ class HBNBCommand(cmd.Cmd):
                 return
             cls_name = args[0]
             obj_id = args[1]
-            modules = ["models.base_model", "models.engine.file_storage"]
+            modules = model_list
 
             for item in modules:
                 module = importlib.import_module(item)
@@ -90,7 +91,7 @@ If the instance of the class name doesn’t exist for the id, print ** no instan
                 return
             cls_name = args[0]
             obj_id = args[1]
-            modules = ["models.base_model", "models.engine.file_storage"]
+            modules = model_list
 
             for item in modules:
                 module = importlib.import_module(item)
@@ -117,7 +118,7 @@ If the instance of the class name doesn’t exist for the id, print ** no instan
         If the class name doesn’t exist, print ** class doesn't exist ** (ex: $ all MyModel)
         """
         instance_list = []
-        modules = ["models.base_model", "models.engine.file_storage"]
+        modules = model_list
 
         if line:
             cls_name = line.split()[0]
@@ -172,7 +173,7 @@ If the instance of the class name doesn’t exist for the id, print ** no instan
         insta_id = args[1]
         attr_name = args[2]
         attr_val = args[3]
-        modules = ["models.base_model", "models.engine.file_storage"]
+        modules = model_list
         
         for item in modules:
             module = importlib.import_module(item)
